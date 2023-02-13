@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xsi:schemaLocation="http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-4.3.xsd
+		http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+	
+	<!-- Root Context: defines shared resources visible to all other web components -->
+		
+		<!-- 데이터 베이스 설정 -->
+		<!-- db.properties 파일 연결 -->
+		<!-- Member member = new Member() == <bean id="member" class="com.mclass.buyday.member"> -->
+ 		<bean id="propertyPlaceholderConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+			<!-- property는 setter 메소드와 같다 -->
+			<property name="locations" value="/WEB-INF/mybatis/db.properties"></property>
+		</bean>
+		
+		
+		<!-- jdbc 설정 (DataSource: 데이터베이스) -->
+		<bean id="dataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
+			<property name="driverClass" value="${driver}"/>
+			<property name="url" value="${url}"/>
+			<property name="username" value="${username}"/>
+			<property name="password" value="${password}"/>
+		</bean>
+	   
+		
+		<!-- Mybatis SqlSessionFactory 설정 -->
+		<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+			<property name="dataSource" ref="dataSource"/>
+			<!-- configLocation 으로 설정된 config.xml 파일에서는 Mapper 에서 사용될 Type 의 별칭을 지정하고 관리해주는 역할을 수행한다. -->
+			<property name="configLocation" value="/WEB-INF/mybatis/config.xml"/>
+			<property name="mapperLocations" value="classpath:com/mclass/buyday/mapper/*.xml"/>
+		</bean>
+		
+		
+		<!-- SqlSessionTemplate : sql session을 DAO에서 불러와 사용할 수 있도록 해준 빈 -->
+  		<!-- 이 빈을 선언해두면, 사용하고자 하는 DAO에서 객체를 만들어 간단하게 사용할 수 있고 따로 close()를 실행 할 필요도 없다 -->
+   		<!-- destroy-method="clearCache" : session의 작업이 끝나면 자동으로 닫히게 함 -->
+   		<!-- ref 에는 Mybatis SqlSessionFactory 의 bean id 를 적는다. -->
+	   <bean destroy-method="clearCache" id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+	   		<constructor-arg ref="sqlSessionFactory" name="sqlSessionFactory"></constructor-arg>
+	   </bean>
+		
+		
+		<!-- @component 어노테이션은 자동으로 Bean 으로 등록,
+			com.mclass.buyday 안에 모든 파일의 @component 을 스캔함 -->
+		<context:component-scan base-package="com.mclass.buyday" />
+		
+</beans>

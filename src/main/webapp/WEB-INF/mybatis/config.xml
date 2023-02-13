@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+	<typeAliases>
+	
+		<typeAlias type="com.mclass.buyday.member.domain.MemberVO" alias="memberVO"/>
+		
+		<typeAlias type="com.mclass.buyday.product.domain.ProductDTO" alias="productDTO"/>
+		
+		<typeAlias type="com.mclass.buyday.order.domain.CartDTO" alias="cartDTO"/>
+	
+		<typeAlias type="com.mclass.buyday.order.domain.OrderDTO" alias="orderDTO"/>
+		
+	</typeAliases>
+</configuration>
