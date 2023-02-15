@@ -76,6 +76,18 @@ public class MemberDAOImpl implements MemberDAO {
 		// 파라미터로 매개변수를 받아오지 않는 경우는 Mapper 쿼리문에서 조건으로 사용할 인자가 필요없는 경우이다.
 		return sqlSession.selectList(NS + ".list");
 	}
+
+	@Override
+	public MemberVO findId(MemberVO vo) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(NS + ".findId", vo);
+	}
+
+	@Override
+	public MemberVO findPw(MemberVO vo) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(NS + ".findPw", vo);
+	}
 	
 	
 

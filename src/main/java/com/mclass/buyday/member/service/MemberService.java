@@ -20,5 +20,9 @@ public interface MemberService {
 	
 	List<MemberVO> list(); // Mapper 에 인자가 필요하지 않을 때는 매개변수를 적지않는다. (memberDAOImpl 참고)
 	
+	MemberVO findId(MemberVO vo);
+	
+	MemberVO findPw(MemberVO vo);
+	
 	
 }

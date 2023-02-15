@@ -33,5 +33,13 @@
 	<select id="list" resultType="memberVO">
 		SELECT * FROM member WHERE userid NOT IN ('admin') ORDER BY regDate DESC <!-- 가장 최근 데이터가 먼저 조회됨 -->
 	</select>
+	
+	<select id="findId" resultType="memberVO">
+		SELECT * FROM member WHERE username = #{username} AND email = #{email}
+	</select>
+	
+	<select id="findPw" resultType="memberVO">
+		SELECT * FROM member WHERE userid = #{userid} AND username = #{username} AND email = #{email}
+	</select>
 
 </mapper>

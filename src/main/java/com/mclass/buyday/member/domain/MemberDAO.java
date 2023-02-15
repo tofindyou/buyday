@@ -17,4 +17,10 @@ public interface MemberDAO {
 	MemberVO login(LoginDTO dto);
 	
 	List<MemberVO> list();
+	
+	MemberVO findId(MemberVO vo);
+	
+	MemberVO findPw(MemberVO vo);
+	
+	
 }

@@ -59,6 +59,18 @@ public class MemberServiceImpl implements MemberService {
 		// TODO Auto-generated method stub
 		return memberDAO.list();
 	}
+
+	@Override
+	public MemberVO findId(MemberVO vo) {
+		// TODO Auto-generated method stub
+		return memberDAO.findId(vo);
+	}
+
+	@Override
+	public MemberVO findPw(MemberVO vo) {
+		// TODO Auto-generated method stub
+		return memberDAO.findPw(vo);
+	}
 	
 	
 

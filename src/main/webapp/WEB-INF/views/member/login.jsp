@@ -19,7 +19,7 @@
 		$("#find_id").click(function(event) {
 			event.preventDefault();
 			
-			
+			location.assign("${ctx}/member/idSearch");
 		});
 		
 		
@@ -27,7 +27,7 @@
 		$("#find_pw").click(function(event) {
 			event.preventDefault();
 			
-			
+			location.assign("${ctx}/member/pwSearch");
 		});
 		
 		
@@ -42,18 +42,16 @@
 	</div>
 	<div class="row">
 		<form class="form-horizontal" action="${ctx}/member/login" method="post">
-			<div class="mb-3 row">
+			<div class="mb-5 row">
 				<label for="inputId" class="col-sm-2 col-form-label">아이디</label>
 				<div class="col-sm-10">
 					<input class="form-control mb-2" id="inputId" placeholder="아이디" name="userid" autofocus required>
-					&nbsp;&nbsp;<span style="color: red;"></span>
 				</div>
 			</div>
-			<div class="mb-3 row">
+			<div class="mb-5 row">
 				<label for="inputPassword" class="col-sm-2 col-form-label">비밀번호</label>
 				<div class="col-sm-10">
 					<input class="form-control" id="inputPassword" placeholder="비밀번호" name="userpw" required>
-					&nbsp;&nbsp;<span style="color: red;"></span>
 				</div>
 			</div>				
 			<div class="text-center mt-3 row">

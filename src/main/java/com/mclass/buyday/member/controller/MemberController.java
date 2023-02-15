@@ -184,5 +184,45 @@ public class MemberController {
 	}
 	
 	
+	// 아이디 찾기 버튼 누를시 동작
+	@RequestMapping(value="/idSearch", method=RequestMethod.GET)
+	public void idSearch() {
+		// return "member/idSearch";
+	}
+	
+	// 아이디 찾기 창에서 확인 버튼 누를시 동작 (ajax 방식)
+	@ResponseBody
+	@RequestMapping(value="/findId", method=RequestMethod.POST)
+	public String findId(MemberVO vo) {
+		vo = memberService.findId(vo);
+		System.out.println(vo.getUserid());
+		
+		if(vo != null) {
+			return vo.getUserid();
+		} else {
+			return null;
+		}
+	}
+	
+	// 비밀번호 찾기 버튼 누를시 동작
+	@RequestMapping(value="/pwSearch", method=RequestMethod.GET)
+	public void pwSearch() {
+		// return "member/pwSearch";
+	}
+	
+	// 비밀번호 찾기 창에서 확인 버튼 누를시 동작 (ajax 방식)
+	@ResponseBody
+	@RequestMapping(value="/findPw", method=RequestMethod.POST)
+	public String findPw(MemberVO vo) {
+		vo = memberService.findPw(vo);
+		System.out.println(vo.getUserpw());
+		
+		if(vo != null) {
+			return vo.getUserpw();
+		} else {
+			return null;
+		}
+	}
+	
 	
 }
